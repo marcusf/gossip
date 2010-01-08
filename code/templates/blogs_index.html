@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{%block pageclass%}blogs{%endblock%}
+
+{%block header%}
+<script type="text/javascript">
+t = null;
+  $(document).ready(function(){
+	$("#searchbox").keyup(function(){
+		value = $(this).val();
+		if (t == null)
+		{
+			t = setTimeout(function(){
+						$('#results').load("/blogs/list/?q=" + value);
+						t = null;
+					}, 500);
+		}
+	});
+$('#results').load("/blogs/list/");	
+});
+
+</script>
+{%endblock%}
+
+{%block content%}
+<div style="overflow: hidden; max-height: 300px">
+<div class="itunesbox" style="display: none; max-height: 300px; overflow: hidden"></div>
+</div>
+<div class="toolbox" style="margin-top: 4px">
+<div id="slidebox" style="">
+	<div id="updownslides" style="float: left; width: 50px; cursor: pointer;">
+		<span id="up">up</span>/<span id="down">down</span>
+	</div>
+</div>
+<label for="searchbox">Search: </label>
+<input type="text" id="searchbox" name="searchbox"/>
+</div>
+<div id="results">
+	<div class="loading"></div>
+</div>
+{%endblock%}

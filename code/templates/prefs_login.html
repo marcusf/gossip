@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>The Gossip - Login</title>
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/reset.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/zoid.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/ui.tabs.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="{{MEDIA_URL}}jquery-1.2.4b.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.core.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.tabs.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.sortable.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}zoid.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.accordion.js"></script>
+	<style type="text/css" media="screen">
+	body {  }
+		#box-wrap { top: 40%; 
+								display: table-cell; vertical-align: middle;
+								position: absolute;
+								left: 50%;
+							}
+		#login-box {background: #fff; width: 300px; margin: 0 auto;
+						border: 6px solid #124527; padding: 16px;
+						font-size: 10pt; font-family: Lucida Grande; position: relative; top: -50%; left: -50%;}
+		#login-box label { width: 90px;  padding-top: 2px; padding-right: 12px; }
+		#login-box input { width: 210px; height: 18px;  margin-top: 12px; font-size: 12pt;}
+		#login-box input.btn { width: 60px; height: 25px; font-size: 12pt;}
+	</style>
+</head>
+<body>
+	<div id="logo">
+		<h1>The Gossip.</h1>
+	</div>
+	<div id="big-container">
+		<div id="padding">
+			<div id="box-wrap">
+			<div id="login-box">
+				{% if user.is_autenticated %}
+				<h4>Welcome, {{user.username}}</h4>
+				{% else %}
+				
+				{% if form.has_errors %}
+				<p>Your username and password didn't match. Please try again.</p>
+				{% endif %}
+				
+				<form method="post" action=".">
+					<table>
+						<tr>
+							<td>
+				<label for="id_username">User</label></td><td>{{ form.username }}
+				</td>
+					<tr><td>
+				<label for="id_password">Password</label></td><td>{{ form.password }}
+					</td>
+					</tr>
+					<tr>
+						<td></td><td>
+				<input type="submit" value="login" class="btn" />
+				<input type="hidden" name="next" value="{{ next }}" /></td>
+				</table>
+				</form>
+				{%endif%}
+				</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

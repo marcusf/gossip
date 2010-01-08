@@ -1,0 +1,67 @@
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	
+	// Makes the items in the list dragable
+	$(".rank-list").sortable({'containment': 'parent', 'opacity': 0.8, 'axis': 'y', 'handle': '.dragarea'});
+	
+	// Binds so that we load extra meta data
+	$(".feedlink").click(function(event) {
+		event.preventDefault(); 
+		$('#sidebar #more').load(event.target.href, function(){$('#sidebar #more').slideDown(300)}).slideUp(300); 
+	});
+	
+
+	$(".refresh").click(function(event){
+		event.preventDefault();
+ x  = $(event.target).parent().parent().parent().children().filter(".data").children().filter("h4").children().filter("span")
+		x.fadeOut(150);
+		x.load(event.target.href, {}, function(ev){x.fadeIn(150)});
+	});
+		
+	$(".rankable h4 a").click(function(event){
+		event.preventDefault();
+		$("#slidebox").animate({'height': '0', 'padding': '0'},300);
+		$(".itunesbox").animate({'height': '15px'},300).html('').addClass('loading').load( event.target.href,{},function(){
+			$("#slidebox").animate({'height': '10', 'padding': '5px'},300);
+			$(".itunesbox").removeClass('loading').animate({'height': '207px'},300);
+			});
+	})
+	
+	// Rebinds the bottom paginator so to load dynamically.
+	$("#blog-pagination > a").click(function(event) {
+		event.preventDefault();
+		$(this).parent().parent().load(event.target.href);
+	})
+	
+});
+</script>
+{% if blog_page %}
+	<ul class="rank-list" id="blogs">
+	{% for blog in blog_page.object_list %}
+		<li id="{{blog.id}}" class="rankable {% cycle 'odd' 'even' %}">
+			<div class="data"><h4><a href="/feeds/{{blog.feed.id}}">{{blog.title}}</a> <span class="num_posts">{{blog.num_posts}} posts</span></h4>
+				Feed URL: <a href="/blogs/{{blog.id}}" class="feedlink" title="{{blog.title}}">{{blog.feed.url}}</a>
+			</div>
+			<ul class="operations">
+				<li>Operations: </li>
+				<li class="dragarea">Move</li>
+				<li class="traversable"><a href="/blogs/{{blog.id}}/refresh/" class="refresh">Refresh</a></li>
+			</ul>
+		</li>
+	{% endfor %}
+	</ul>
+{%if draw_pagin%}
+<div id="blog-pagination" class="pagination">
+	{% for index in index_list %}
+		{% ifnotequal index current_index %}
+			<a href="/blogs/list/{{index}}?q={{query_param}}">{{index}}</a>
+		{%else%}
+			<div class="selected">{{index}}</div>
+		{%endifnotequal%}
+		{%if not forloop.last%}|{%endif%}
+	{%endfor %}
+</div>
+{%endif%}
+{% else %}
+	<p>Empty blog list.</p>
+{% endif %}

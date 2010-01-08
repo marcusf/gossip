@@ -1,0 +1,131 @@
+/*
+ * the gossip
+ * Marcus Frödin (marfr519@student.liu.se)
+ */
+body { background: url(../images/gossip.gif) top center no-repeat #0d3227; height: 100%; }
+#big-container { margin: 180px auto 0px auto; width: 920px; font-family: Helvetica, Arial;}
+#container { width: 659px; float: left; margin-bottom: 30px; }
+h1, h2 { text-indent: -5000px; }
+
+/* Loading */
+.loading { background: url(../images/loader.gif) no-repeat; 
+	padding: 4px; padding-left: 24px; margin-top: 12px; }
+.loading:after { content: "Loading..."; color: #295242; }
+
+
+/* Toolbox */
+.toolbox { padding: 5px; background: #295242; color: #fff; margin-bottom: 4px;}
+.toolbox label { display: inline; padding: 0px 4px;
+	font-weight: bold; font: bold 8pt Lucida Grande, Arial; }
+.toolbox input { width: 565px; border: 1px solid #194232; font: 8pt Lucida Grande, Arial; height: 18px;}
+
+/* Slidebox */
+#slidebox { position: absolute; overflow: hidden; width: 50px; height: 0;
+			left: 613px; margin-top: -20px; color: #fff; 
+			background: #295242; font-weight: bold; }
+ 
+/* Pagination */
+.pagination { margin-top: 12px;}
+.pagination a, .pagination .selected { padding: 2px; }
+.pagination a { text-decoration: none; color: #000; }
+.pagination .selected { color: #fff; background: #777; display: inline; }
+
+
+/* Feed list */
+.feed-list { padding-top: 14px; position: relative; background: #fff; overflow: hidden; }
+.feed-list h4 { color: #777; font: bold 24pt "Helvetica Neue", Helvetica, Arial; }
+.feed-list a { text-decoration: underline; color: #194232; }
+.feed-list .wrapper { width: 1000000px; float: left; position: relative;}
+.feed-list .feed-post { width: 659px; float: left; }
+.feed-list div h5 { font-size: 14pt; color: #777; font-weight: normal;
+		letter-spacing: -0.2; margin-top: 14px; margin-bottom: 2px; }
+.feed-list div h5 a { text-decoration: none; color: #555; font-weight: bold;  }
+.feed-list div h5 a:hover { text-decoration: underline; color: #194232; }
+.feed-list div p { padding: 8px 0; font-size: 8pt; color #333; }
+.feed-list div { font-size: 8pt; }
+.feed-list div li { padding: 4px 4px; display: block; }
+.feed-list div li:hover, .feed-list div li.odd:hover,
+.feed-list div li:hover a, .feed-list div li.odd:hover a  { background: #194232; color: #fff; }
+.feed-list div li a { color: #333; text-decoration: none; }
+.feed-list div li a:hover { text-decoration: underline; }
+.feed-list div li.odd { background: #ddd; }
+.feed-list #toolbar { position: relative; left: 555px;
+	font: bold 36px Verdana; margin-top: -48px; padding-bottom: 10px; color: #ddd; }
+.feed-list #toolbar span { cursor: pointer; }
+.feed-list #toolbar span:hover { color: #777; }
+
+
+/* Sidebar */
+#sidebar {width: 200px; float: left; margin: 25px 20px; color: #fff; }
+#sidebar .box { margin-bottom: 12px; background: #295242;padding: 6px; padding-top: 8px; }
+#sidebar h4 { font-family: "Helvetica Neue", Helvetica, Arial; 
+				font-size: 10pt; font-weight: bold; margin-bottom: 6px; }
+#sidebar .head { font-weight: bold; font-size: 
+	8pt; margin-bottom: 4px; margin-top: 4px; padding-top: 4px;
+	text-decoration: none; color: #fff; border-top: 1px solid #194212; display: block;}
+#sidebar p { font-size: 8pt; line-height: 1.5; overflow: hidden;}
+#sidebar a { color: #699282; line-height: 1.5; text-decoration: none; }
+#sidebar a:hover { text-decoration: underline; color: #fff;}
+#sidebar #feed_url { margin-bottom: 4px;}
+#sidebar ul ul { line-height: 1.5;  font-size: 8pt;}
+
+/* Main bar */
+.rank-list li.rankable { display: block;
+ padding: 8px 8px; font: 11px Helvetica, Arial; line-height: 1.5; }
+.rank-list li.rankable:hover { background: #eec; }
+.rank-list li a { color: #295242; }
+.rank-list li h4 { color: #777;
+	font: 14pt "Helvetica Neue", Helvetica, Arial; }
+.rank-list li h4 a { text-decoration: none; color: #194232; }
+.rank-list li.even { background:#ddd; }
+.rank-list li .data { width: 550px; display: block;}
+	
+.dragarea, .traversable, .untraversable {
+ color: #fff; padding: 3px;  text-align: center;
+}
+/* Actionable items */
+.operations { width: 100%; padding-top: 4px; }
+.operations li { display: inline; font-size: 9px; }
+.operations li a {color: #fff; text-decoration: none;}
+.dragarea {background: #777; width: 30px; cursor: move; }
+.refreshed { color: #040; }
+.traversable {background: #030; width: 80px;}
+.untraversable {background: #300; width: 80px;}
+
+#playlist { font: 10pt "Helvetica Neue", Helvetica, Arial; float: left; width: 659px; 
+			margin-left: -14px; background: #fff; }
+#playlist div a { text-decoration: none; color: #444; }
+#playlist div a:hover { text-decoration: underline; color: #444; }
+#playlist p strong { font-weight: bold; }
+#playlist div { padding-bottom: 14px; float: left; width: 659px; }
+#playlist div h4 {  font: bold 14pt "Helvetica Neue", Helvetica, Arial; }
+#playlist div.tools { width: 60px; float: left; padding: 8px; }
+#playlist div.trackinfo { width: 550px; float: left; border-bottom: 1px dotted #777; }
+
+#welcome em {font-weight: bold;}
+#welcome { background: #B6FFD0; margin: -12px; padding: 16px; padding-bottom: 26px; margin-bottom: 12px; }
+#welcome h4 { font: bold 24pt "Helvetica Neue", Helvetica, Arial; color: #222; margin: 8px 0; }
+#welcome p { line-height: 1.7; font: 10pt "Helvetica Neue", Helvetica, Arial; }
+.relselect { border-bottom: 1px dotted black;}
+.relselect a.love {  }
+
+.infoblock h4 { font: bold 24pt "Helvetica Neue", Helvetica, Arial; margin-bottom: 4px; }
+.infoblock h4 a { color: #000; text-decoration: none;}
+.infoblock h4 a:hover { color: #000; text-decoration: underline; }
+.infoblock h5 { font: bold 12pt "Helvetica Neue", Helvetica, Arial; margin-bottom: 4px; margin-top: 12px; }
+.infoblock h6, .infoblock p { font: 10pt "Helvetica Neue", Helvetica, Arial; }
+.infoblock h6 { color: #295242; }
+.infoblock #float_wrap { float: left; width: 650px; margin-bottom: 12px; }
+.infoblock #recent_wrap, .infoblock  #similar_wrap { width: 630px; }
+.infoblock #similars { width: 630px; }
+.infoblock textarea { height: 60px; width: 630px; font: 10pt Helvetica, Arial;}
+.infoblock .comment { padding: 6px 6px; }
+.infoblock .odd { background: #B6FFD0; }
+.infoblock #artistinfo li { padding: 0px; }
+.infoblock li a { color: #333; text-decoration: none; }
+.infoblock li.blogpost a { display: inline; }
+.infoblock li { padding: 4px 4px; display: block; }
+.infoblock li:hover, .infoblock li.odd:hover,
+.infoblock li:hover a, .infoblock li.odd:hover a  { background: #194232; color: #fff; }
+.infoblock li a:hover { text-decoration: underline; }
+.infoblock li.odd { background: #ddd; }

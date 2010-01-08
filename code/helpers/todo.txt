@@ -1,0 +1,11 @@
+Vad vi ska göra idag:
+	Få en fungerande spindling
+	Få in bloggar i databasen efter spindling, med relationer
+	Läsa feeds från databasen och få in dessa
+	Göra en display som visar pagerankade sidor
+	Last.fm-modul för popularitet
+	Musicbrainz-modul för metadata om spår, artister
+	
+
+Rankningsmetoder:
+ - Pearsonkorrelation mellan artister. Använd Last.fm för det.

@@ -1,0 +1,96 @@
+/* From django, modified by marfr519
+ */
+@media projection, screen {
+    .ui-tabs-hide {
+        display: none;
+    }
+}
+
+@media print {
+    .ui-tabs-nav {
+        display: none;
+    }
+}
+
+/* Skin */
+.ui-tabs-nav, .ui-tabs-panel {
+    font-family: Lucida Grande, Helvetica, Arial, sans-serif;
+    font-size: 10px;
+}
+.ui-tabs-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 0px;
+}
+.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.ui-tabs-nav li {
+    float: left;
+    margin: 0 0 0 0px;
+	margin-right: 2px;
+    min-width: 84px; /* be nice to Opera */
+}
+
+.ui-tabs-nav a:hover, .ui-tabs-nav a:hover span { background-color: #396252; }
+
+.ui-tabs-nav a, .ui-tabs-nav a span {
+    display: block;
+    padding: 0 10px;
+	background-color: #295242;
+}
+.ui-tabs-nav a {
+    margin: 1px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
+    padding-left: 0;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap; /* required in IE 6 */    
+    outline: 0; /* prevent dotted border in Firefox */
+}
+.ui-tabs-nav .ui-tabs-selected a, .admin #admin-nav a,
+.blogs #blogs-nav a, .prefs #prefs-nav a, .music #music-nav a
+ {
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    margin-top: 0;
+    color: #000;
+	background: #fff;
+
+}
+.ui-tabs-nav a span {
+    width: 64px; /* IE 6 treats width as min-width */
+    min-width: 64px;
+    height: 18px; /* IE 6 treats height as min-height */
+    min-height: 18px;
+    padding-top: 6px;
+    padding-right: 0;
+}
+*>.ui-tabs-nav a span { /* hide from IE 6 */
+    width: auto;
+    height: auto;
+}
+.ui-tabs-nav .ui-tabs-selected a span,
+.blogs #blogs-nav a span, .prefs #prefs-nav a span, 
+.music #music-nav a span,
+.admin #admin-nav a span
+ {
+    padding-bottom: 1px;
+	background: #fff;
+
+}
+
+.ui-tabs-disabled {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+.ui-tabs-panel {
+	padding: 14px;
+    background: #fff;
+}

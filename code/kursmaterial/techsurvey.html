@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Zoidberg! » Technology Survey</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div>
+		<img src="zoidlogo.png" />
+<h3>Technology survey</h3>
+<p>Given the features and bounds defined in the <a href="proposal.html">project proposal</a>, I've tried to identify a few key areas in which the use of external libraries is not only helpful but mandatory for a speedy project deliverable under the time constraints of the course.</p>
+<p>I've identified a few areas which I think are crucial to project delivery:</p>
+<ul>
+	<li><strong>Basic infrastructure</strong>, such as an object-relational mapping for the database back-end, sessions and authentication management, some CRUD assistance and URL rewriting.</li>
+	<li><strong>Feed parsing</strong>, i.e. gathering XML feeds in a variety of formats, such as Atom and RSS, most of them probably not validated against a spec.</li>
+	<li><strong>Page scraping</strong> for building a link graph to use as a basis for the page rank algorithm. HTML pages are notorious for not validating. But I'd much rather not resort to regular expressions if possible.</li>
+	<li><strong>Matrix computations</strong>. When calculating things such as page rank or SVD, several pretty heavy matrix computations are involved, and implementing these myself would most probably lead to horribly ill-conditioned <em>O(n<sup>n</sup>)</em>-algorithms.</li>
+	<li><strong>AJAX</strong>. A nice to have is to abstract away this in to basic javascript calls operating on the DOM, such that I don't have to think about it. A good to have would be framework integration, such that the same functions can be used for ordinary user GETs and AJAX GETs.</li>
+	<li><strong>Rich GUI components</strong>, such as drag and drop, drop down search boxes, animations and transitions etc.</li>
+</ul>
+
+<p>Technology selection is naturally limited by the language of choice. From the outset, I've wanted to do this project in Python. Mostly since I have no previous Python experience and thought this migth be a good time to develop some. I'm halfway proficient in Ruby, so hopefully the gap to bridge will be atleast somewhat narrow.</p>
+
+<h3>Basic infrastructure</h3>
+<p>Scanning the Python terrain, I've decided on <a href="http://www.djangoproject.com">Django</a>, which seems suitably mature, has a decently sized user base and is still under active development. It includes an ORM with support for both MySQL and SQLLite. It manages nice page rewrites for clean URLs and it seems to have pretty good AJAX support. It also claims to support fully automatic generation of admin interfaces, a claim to which I will remain sceptic for a while. There is also a <a href="http://www.djangobook.com/en/1.0/">free book</a> (published by APress) available, which is always nice.</p>
+
+<h3>Feed parsing</h3>
+<p>The open source <a href="http://www.feedparser.org/">Universal Feed Parser</a> seems to solve feed reading in a nice way. It supports most known formats and is criminally well-tested, with over 3000 unit tests. It seems to have an understandable syntax and normalizes feed data for easier scraping. It also features a few nice-to-haves, such as automatic HTML sanitation, and automatic detection of character encoding.</p>
+
+<h3>Page scraping</h3>
+<p>For getting data from web pages, a combination of the built-in <em>urllib</em> for fetching the data of the server, and <a href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a> to parse it and pour it in a nice tree would seem a good fit. There are several raves about it on the web. It also has <a href="http://www.crummy.com/software/BeautifulSoup/documentation.html#Other%20Built-In%20Parsers">an API</a> built for subclassing and extending, if I ever run in to some far to horribly bad mark up.</p>
+
+<h3>Matrix computations</h3>
+<p><a href="http://www.scipy.org">SciPy</a> seems to be well-established (it is for example used in the open source web-based Matlab clone <a href="http://www.sagemath.org/">SAGE</a>. Its module <a href="http://www.scipy.org/doc/api_docs/SciPy.linalg.html">SciPy.linalg</a> has support for matrix inversion, SVD, eigenvalue calculations and more. It also features support for the FFT and statistical tools for calculating covariances, and doing data detrending, which might come in handy. It also supports calculating linear least squares solutions out of the box, which is a nice feature to have. A down-side is that the documentation seems lacking in places, but for the methods I'm interested in, and regarding installation, there seems to be enough.</p>
+
+<h3>AJAX and rich GUI</h3>
+<p>There are several good libraries out there that solve these two problems. For example, <a href="http://www.prototypejs.org/">prototype</a> and <a href="http://script.aculo.us/">script.aculo.us</a> (or <a href="http://mochikit.com/">mochikit</a>), <a href="http://developer.yahoo.com/yui/">YUI</a>, and <a href="http://jquery.com/">jQuery</a> with <a href="http://ui.jquery.com/">jQuery UI</a>. For now, I've decided to settle on jQuery, since it seems to support all of what I think I need and is suitably compact. But all three alternatives seem to have some Django integration, so if jQuery turns out not to work, It will hopefully be a viable alternative to refit the application with a new library.</p>
+
+		</div>
+	</body>
+</html>

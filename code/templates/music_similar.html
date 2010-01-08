@@ -1,0 +1,7 @@
+{%if similar%}
+	<ul>
+	{%for artist in similar%}
+	<li class="{%cycle 'even' 'odd'%}"><a href="/music/explore/{{artist.id}}">{{artist.name}}</a></li>
+	{%endfor%}
+	</ul>
+{%endif%}

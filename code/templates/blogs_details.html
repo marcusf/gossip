@@ -1,0 +1,50 @@
+{% if blog %}
+<script language="javascript">
+$(document).ready(function(){
+	$("#blogsinfo").accordion( {autoHeight: false });
+});
+</script>
+	<h4>{{blog.title}}</h4>
+	<div>
+		<p><a href="{{blog.url}}" id="feed_url">{{blog.url}}</a></p>
+		<p>Posts: {{blog.num_posts}}</p>
+		<p>Tracks: {{blog.num_tracks}}</p>
+		<p>Rank: {{blog.page_rank}}</p>
+	</div>
+	<ul id="blogsinfo">
+
+		{% if blog.num_posts %}
+		<li id="popular">
+			<a href="#" class="head">Popular artists</a>
+			<ul>
+			{%for artist in blog.common_artists%}
+				{{artist}} .
+			{%endfor%}
+			</ul>
+		</li>
+		{% endif %}
+
+
+		{% if blog.incoming %}
+		<li id="ingoing">
+			<a href="#" class="head">Inbound links</a>
+			<ul>
+			{%for link in blog.incoming%}
+				<li><a href="{{link.url}}">{{link.title}}</a></li>
+			{%endfor%}
+			</ul>
+		</li>
+		{% endif %}
+		
+	{% if blog.outgoing %}
+	<li id="outgoing">
+		<a href="#" class="head">Outgoing links</a>
+		<ul>
+		{%for link in blog.outgoing%}
+		<li><a href="{{link.url}}">{{link.title}}</a></li>
+		{%endfor%}
+		</ul>
+	</li>
+	{%endif%}
+	</ul>
+{% endif %}

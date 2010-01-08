@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{%block pageclass%}music{%endblock%}
+{% load comments %}
+{%block header%}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#similars').load('/music/similar/{{object.id}}', {}, 
+	 function() { $('#similars').removeClass('loading') }).addClass('loading')
+})
+</script>
+{%endblock%}
+
+{%block content%}
+<div id="artistinfo" class="infoblock">
+	<h4>{{object.name}}</h4>
+	<div id="float_wrap">
+		<div id="recent_wrap">
+			<h5>Recent music</h5>
+			<ul>
+				{% for track in object.track_set.all %}
+				<li class="{% cycle 'even' 'odd' %}"><a href="/music/track/{{track.id}}">{{track.title}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div id="similar_wrap">
+			<h5>Similar artists</h5>
+			<div id="similars"></div>
+		</div>
+	</div>
+	<div id="comments">
+		<h5>Comments</h5>
+		{% get_comment_list for music.artist object.id as comment_list %}
+		{% for comment in comment_list %}
+			<div class="comment {% cycle 'even' 'odd' %}">
+				<a name="c{{ comment.id }}" />
+				<h6>{{comment.user}}, posted {{comment.submit_date}}</h6>
+				<p class="details">{{comment.comment}}</p>
+			</div>
+		{% endfor %}
+
+	{% if user.is_authenticated %}
+	<h5>Add a comment</h5>
+		{% comment_form for music.artist object.id%}
+	{% endif %}
+	</div>
+</div>
+{%endblock%}

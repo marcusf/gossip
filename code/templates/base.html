@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>The Gossip. {%block title%}{%endblock%}</title>
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/reset.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/zoid.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/ui.tabs.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="{{MEDIA_URL}}jquery-1.2.4b.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.core.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.tabs.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.sortable.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}zoid.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}ui.accordion.js"></script>
+	<script type="text/javascript">
+	</script>
+	{%block header%}{%endblock%}
+</head>
+<body class="{%block pageclass%}{%endblock%}">
+	<div id="logo">
+		<h1>The Gossip.</h1>
+	</div>
+	<div id="big-container">
+		<div id="container">
+			<ul class="ui-tabs-nav">
+				<li id="music-nav"><a href="/music/"><span>Music</span></a></li>
+				<li id="blogs-nav"><a href="/blogs/"><span>Blogs</span></a></li>
+				{% if user.is_authenticated %}
+				<li id="prefs-nav"><a href="/prefs/"><span>Preferences</span></a></li>
+				{% endif %}
+				{% if user.is_superuser %}
+				<li id="admin-nav"><a href="/admin/"><span>Administration</span></a></li>
+				{% endif %}
+			</ul>
+			<div class="ui-tabs-panel">
+				{%block content%}{%endblock%}
+			</div>
+
+		</div>
+		<div id="sidebar">
+			<div class="box">
+				{% if user.is_authenticated %}
+				<h4>Welcome, {{user.username}} (<a href="/prefs/logout">Log out</a>)</h4>
+				{% else %}
+				<h4><a href="/prefs/login">Register</a>, or <a href="/prefs/login">log in!</a></h4>
+				{%endif%}
+			</div>
+			
+			<div id="more" class="box" style="display: none;">
+			<h4>Generally more info
+			</h4>
+			<p></p>
+			</div>
+		</div>
+	</div>
+	<br /><br />
+</body>
+</html>

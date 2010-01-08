@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{%block pageclass%}music{%endblock%}
+{% load comments %}
+{%block header%}
+{%endblock%}
+
+{%block content%}
+<div id="artistinfo" class="infoblock">
+	<h4><a href="/music/explore/{{object.artist.id}}">{{object.artist.name}}</a> - {{object.title}}</h4>
+		<div id="recent_wrap">
+			<h5>Posted on</h5>
+			<ul>
+				{% for enclosure in object.enclosure_set.all %}
+				<li class="{% cycle 'even' 'odd' %} blogpost">
+					<a href="{{enclosure.post.url}}">{{enclosure.post.title}}</a> in 
+					 {{enclosure.post.feed.blog.title}} 
+					<a href="{{enclosure.url}}" class="download">(download)</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	<div id="comments">
+		<h5>Comments</h5>
+		{% get_comment_count for music.track object.id as comment_count %}
+		{% get_comment_list for music.track object.id as comment_list %}
+		{% ifequal comment_count 0 %}
+			No comments yet. Be the first!
+		{% else %}
+		{% for comment in comment_list %}
+			<div class="comment {% cycle 'even' 'odd' %}">
+				<a name="c{{ comment.id }}" />
+				<h6>{{comment.user}}, posted {{comment.submit_date}}</h6>
+				<p class="details">{{comment.comment}}</p>
+			</div>
+		{% endfor %}
+		{% endifequal %}
+
+	{% if user.is_authenticated %}
+	<h5>Add a comment</h5>
+		{% comment_form for music.track object.id%}
+	{% endif %}
+	</div>
+</div>
+{%endblock%}

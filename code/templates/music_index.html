@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{%block pageclass%}music{%endblock%}
+
+{%block header%}
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".tools a").click(function(event) {
+		event.preventDefault(); 
+		$(event.target).parents().filter('.tools').children().removeClass('relselect');
+		$(event.target).addClass('relselect');
+		jQuery.get(event.target.href);
+	})
+})
+</script>
+<style type="text/css">
+
+</style>
+{%endblock%}
+
+{%block content%}
+{% ifequal pageno 1 %}
+<div id="welcome">
+	<h4>Your music. Now.</h4>
+	<p><em>The Gossip</em> brings you the lastest in music, tailored to your ears and listening
+		demands, from the hottest blogs on the internet.</p>
+</div>
+{% endifequal %}
+{% if tracks %}
+<div id="playlist">
+	{% for track in tracks.object_list %}
+	<div>
+		
+		<div class="tools">
+			{% if user.is_authenticated %}
+				{% ifequal track.user_relation 1 %}
+				<a href="/music/love/{{track.id}}" class="love relselect">Love</a>
+				{%else%}
+				<a href="/music/love/{{track.id}}" class="love">Love</a> 
+				{% endifequal %}
+				
+				{% ifequal track.user_relation -1 %}
+				<a href="/music/hate/{{track.id}}" class="hate relselect">Hate</a>
+				{%else%}
+				<a href="/music/hate/{{track.id}}" class="hate">Hate</a>
+				{% endifequal %}
+			{%endif%}
+	</div>
+		<div class="trackinfo">
+		<h4><a href="/music/explore/{{track.artist.id}}">{{track.artist.name}}</a> - 
+			<a href="/music/track/{{track.id}}">{{track.title}} ({{track.trackstatistics.sort_score|floatformat}})</a></h4>
+		<p><strong>Posted on:</strong>
+			{% for encl in track.enclosure_set.all %} {{encl.post.feed.blog.title}} ({{encl.post.published|date:"d M Y"}}){%if not forloop.last%}, {%endif%} {%endfor%} 
+		</div>
+	</div>
+	{% endfor %}
+
+	<div id="blog-pagination" class="pagination" style="padding: 4px; margin-left: 55px; margin-bottom: 20px">
+		{% for index in index_list %}
+			{% ifnotequal index page_no %}
+				<a href="/music/{{index}}">{{index}}</a>
+			{%else%}
+				<div class="selected">{{index}}</div>
+			{%endifnotequal%}
+			{%if not forloop.last%}|{%endif%}
+		{%endfor %}
+	</div>
+</div>
+{% endif %}
+{%endblock%}

@@ -1,0 +1,9 @@
+body { background: #f0f0f0; padding: 12px; }
+body div { width: 600px; font: 10pt Tahoma; background: #fff; padding: 12pt; }
+div p { line-height: 1.4; }
+h1, h2, h3, h4 { font-family: Arial; font-weight: bold; margin: 0; padding: 0; }
+h2 { font-size: 24pt; margin-top: 12pt; margin-bottom: 12pt; border-top: 2px solid #999; padding-top: 8px; }
+h3 { font-size: 18pt; margin-top: 8pt; border-bottom: 2px solid #999; margin-bottom: 8pt; }
+h4 { font-size: 12pt; margin-top: 12pt; font-family: Tahoma; font-weight: normal; }
+img { margin: 4px; }
+li { margin-top: 12px; line-height: 1.4; }

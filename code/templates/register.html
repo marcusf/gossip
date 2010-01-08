@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block pageclass %}prefs{%endblock%}
+{% block content %}
+<h4>Register</h4>
+{% if created %}
+Account created succesfully! Get <a href="/prefs/login">surfing!</a>
+{% else %}
+{% if form.has_errors %}
+<h2>Please correct the following error{{ form.error_dict|pluralize }}:</h2>
+{% endif %}
+
+<form method="post" action=".">
+<p>
+    <label for="id_name">Userame:</label> {{ form.username }}
+    {% if form.username.errors %}*** {{ form.username.errors|join:", " }}{% endif %}
+</p>
+<p>
+    <label for="id_address">E-mail:</label> {{ form.email }}
+    {% if form.email.errors %}*** {{ form.email.errors|join:", " }}{% endif %}
+</p>
+<p>
+    <label for="id_city">Passsword:</label> {{ form.password1 }}
+    {% if form.password1.errors %}*** {{ form.password1.errors|join:", " }}{% endif %}
+</p>
+<p>
+    <label for="id_city">Confirm password:</label> {{ form.password2 }}
+    {% if form.password2.errors %}*** {{ form.password2.errors|join:", " }}{% endif %}
+</p>
+<input type="submit" />
+</form>
+{% endif %}
+{% endblock %}

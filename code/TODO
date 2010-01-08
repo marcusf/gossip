@@ -1,0 +1,9 @@
+------------------------------------------------------------------------------
+PROJEKT GÖRA-OM-ZOID
+------------------------------------------------------------------------------
+Idéer:
+ * Lägg till generellt stöd för att parsa icke-RSS-feeds (i träd)
+ * Gör om så att vi använder Django templates
+ * Ta bort kommentarer. Lägg till annoteringar per grupp
+ * Gör grupper av användarsystemet
+ * Gör om så att vi laddar hem istället för listar ut om en låt.

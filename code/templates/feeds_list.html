@@ -1,0 +1,68 @@
+{%if feed %}
+<script language="text/javascript">
+	my_{{feed.id}}_left=0;
+$(window).ready(function(){
+	wrapper = $("#feed{{feed.id}} div.wrapper");
+	$('#sidebar #more').load('/blogs/{{feed.blog.id}}', function(){$('#sidebar #more').slideDown(300)}).slideUp(300); 
+	$('#feed{{feed.id}} #tbleft').click(function(event){
+		if (my_{{feed.id}}_left > 1)
+		{
+			my_{{feed.id}}_left -= 659;
+			wrapper.animate({top: "0"},50);
+			wrapper.animate({ 
+			        left: "+=659px",
+			      }, 300, 'linear' );
+			
+		}
+	});
+	$('#feed{{feed.id}} #tbright').click(function(event){
+		if (my_{{feed.id}}_left < 659*({{posts|length}}-1))
+		{
+			my_{{feed.id}}_left += 659;
+			wrapper.animate({top: "0"},50);
+			wrapper.animate({ 
+			        left: "-=659px",
+							top: "0"
+			      }, 300, 'linear' );
+			
+		}
+	});
+	
+	
+	$("#updownslides #down").click(function(){
+		wrapper.animate({ 
+		        top: "-=10px"
+		      }, 50, 'linear' );
+	});
+	
+	$("#updownslides #up").click(function(){
+		wrapper.animate({ 
+		        top: "+=10px"
+		      }, 50, 'linear' );
+	});
+	
+});
+</script>
+<div class="feed-list" id="feed{{feed.id}}">
+<h4>{{feed.title}}</h4>
+<a href="{{feed.url}}">{{feed.url}}</a>
+
+<div id="toolbar">
+	<span id="tbleft">&lt;</span>
+	<span id="tbright">&gt;</span>
+</div>
+<div style="overflow: hidden; width: 1000000px">
+<div class="wrapper">
+{% for post in posts %}
+<div class="feed-post">
+	<h5>{{post.published|date:"md"}} <a href="{{post.url}}">{{post.title}}</a></h5>
+	<ul>
+		{% for enclosure in post.enclosures %}
+		<li class="{% cycle 'odd' 'even' %}"><a href="/music/explore/{{enclosure.track.artist.id}}">{{enclosure.track.artist.name}}</a> - <a href="/music/track/{{enclosure.track.id}}">{{enclosure.track.title}}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endif %}
